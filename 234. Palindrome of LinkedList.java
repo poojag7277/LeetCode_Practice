@@ -5,45 +5,45 @@
 // Example 2:
 // Input: head = [1,2]
 // Output: false
+
 /**
  * Definition for singly-linked list.
- * struct ListNode {
+ * public class ListNode {
  *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
  */
 class Solution {
-public:
-    bool isPalindrome(ListNode* head) {
-        ListNode* slow=head;
-        ListNode* fast=head;
-        while(fast!=NULL && fast->next!=NULL){
-            slow=slow->next;
-            fast=(fast->next)->next;
+    public boolean isPalindrome(ListNode head) {
+    ListNode slow=head;
+        ListNode fast=head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=(fast.next).next;
         }
-        ListNode* prev=NULL;
-        ListNode* curr=slow;//can direlty use slow instead of curr
-        while(curr!=NULL){
-            ListNode *temp=curr->next;
-            curr->next=prev;
+        ListNode prev=null;
+        ListNode curr=slow;
+        while(curr!=null){
+            ListNode temp=curr.next;
+            curr.next=prev;
             prev=curr;
             curr=temp;
         }
-        ListNode* first=head;
-        ListNode* second=prev;
-        while(second!=NULL){
-            if(first->val!=second->val){
+        ListNode first=head;
+        ListNode second=prev;
+        while(second!=null){
+            if(first.val!=second.val){
                 return false;
             }
-            first=first->next;
-            second=second->next;
+            first=first.next;
+            second=second.next;
         }
-        return true;
+        return true;   
     }
-};
+}
 //step 1:Find the middle element 
 //then reverse the second part from the middle element
 //then compare both 
